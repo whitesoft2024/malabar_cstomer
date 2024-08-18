@@ -14,6 +14,7 @@ class DashbaordPage extends StatefulWidget {
 
 class _DashbaordPageState extends State<DashbaordPage> {
   int pageIndex = 0;
+  bool _isBalanceVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,72 +29,61 @@ class _DashbaordPageState extends State<DashbaordPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Moved AppBar content here
         Container(
-          color: primary,
-          padding:  EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          // color: primary,
+          padding:  EdgeInsets.only(left: 13,right: 13, top: 10,bottom: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image(image: AssetImage("assets/images/mscs_1.png"),height: 30,width: 40,fit: BoxFit.contain,),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Text(
-              //       'Hello',
-              //       style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 10.0,
-              //       ),
-              //     ),
-              //     Text(
-              //       'Username',
-              //       style: TextStyle(
-              //         color: Colors.white,
-              //         fontSize: 14.0,
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              //Spacer(),
-              // IconButton(
-              //   onPressed: () {},
-              //   icon: Icon(Icons.more_vert_rounded, color: Colors.black),
-              // ),
+              //Image(image: AssetImage("assets/images/mscs_1.png"),height: 30,width: 40,fit: BoxFit.contain,),
               IconButton(
                 onPressed: () {},
                 icon: CircleAvatar(
-                  radius: 18,
+                  radius: 19,
                   backgroundImage: AssetImage(
-                      "assets/images/user.png"),
+                      "assets/images/man.png"),
                 ),
               ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Hi, Murshid",style: GoogleFonts.montserrat(fontSize: 11,color: Colors.grey.shade400,fontWeight: FontWeight.w600),),
+                  Text("Good Morning",style: GoogleFonts.montserrat(fontSize: 15,color: primary2,fontWeight: FontWeight.w800),),
+                ],
+              ),
+              Spacer(),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.more_vert_rounded, color: Colors.black),
+              ),
+
             ],
           ),
         ),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 13,horizontal: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Welcome back,",style: GoogleFonts.montserrat(fontSize: 13,color: Colors.grey.shade400,fontWeight: FontWeight.w600),),
-              Text("Murshid",style: GoogleFonts.montserrat(fontSize: 25,color: black,fontWeight: FontWeight.w800),),
-            ],
-          ),
-        ),
+        // Container(
+        //   padding: EdgeInsets.symmetric(vertical: 13,horizontal: 15),
+        //   child: Column(
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       Text("Welcome back,",style: GoogleFonts.montserrat(fontSize: 13,color: Colors.grey.shade400,fontWeight: FontWeight.w600),),
+        //       Text("Murshid",style: GoogleFonts.montserrat(fontSize: 25,color: primary2,fontWeight: FontWeight.w800),),
+        //     ],
+        //   ),
+        // ),
+
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(bottom: 20,left: 15,right: 15),
-          height: 170,
+          margin: EdgeInsets.only(bottom: 22,left: 22,right: 22,top: 10),
+          height: 160,
           decoration: BoxDecoration(
-            color: black, borderRadius: BorderRadius.circular(12),
+            color: Color(0xFF6F6AD7), borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.6),
+                color: Colors.blue.withOpacity(0.3),
                 spreadRadius: 4,
                 blurRadius: 10,
-                offset: Offset(0, 6), // changes position of shadow
+                offset: Offset(0, 7), // changes position of shadow
               ),
             ],
 
@@ -108,14 +98,14 @@ class _DashbaordPageState extends State<DashbaordPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Saving account",style: GoogleFonts.varela(color: Colors.grey.shade400,fontSize: 10,fontWeight: FontWeight.w600),),
+                    Text("Saving account",style: GoogleFonts.varela(color: white.withOpacity(0.8),fontSize: 10,fontWeight: FontWeight.w600),),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
                       "1234 5678 9000",
                       style: GoogleFonts.varela(
-                          color: white.withOpacity(0.8),
+                          color: white.withOpacity(0.9),
                           fontSize: 20,
                           wordSpacing: 15),
                     )
@@ -127,27 +117,54 @@ class _DashbaordPageState extends State<DashbaordPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      Text("₹2,10,002.00",style: GoogleFonts.varela(color: Colors.grey.shade400,fontSize: 15,fontWeight: FontWeight.w600),),
-                        SizedBox(
-                          height: 4,
+                        Text(
+                          _isBalanceVisible ? "₹2,10,002.00" : "   * * * * * *",
+                          style: GoogleFonts.varela(
+                            color: white.withOpacity(0.8),
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
+                        SizedBox(height: 4,),
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
                             "Account balance",
-                            style: GoogleFonts.varela(fontSize: 10,color: Colors.grey.shade400,fontWeight: FontWeight.w600),
+                            style: GoogleFonts.varela(fontSize: 10,color: white.withOpacity(0.8),fontWeight: FontWeight.w600),
                           ),
                         ),
                       ],
                     ),
                     IconButton(
-                        onPressed: (){},
-                        icon: Icon(Icons.remove_red_eye_rounded,color: Colors.grey.shade600,)
+                      onPressed: () {
+                        setState(() {
+                          _isBalanceVisible = true;
+                        });
+                        Future.delayed(Duration(seconds: 3), () {
+                          setState(() {
+                            _isBalanceVisible = false;
+                          });
+                        });
+                      },
+                      icon: Icon(
+                        Icons.remove_red_eye_rounded,
+                        color: white.withOpacity(0.8),
+                      ),
                     )
                   ],
                 )
               ],
             ),
+          ),
+        ),
+
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 22),
+          height: 100,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: black,
+              borderRadius: BorderRadius.circular(10)
           ),
         ),
 
@@ -224,12 +241,8 @@ class _DashbaordPageState extends State<DashbaordPage> {
         // ),
         Expanded(
           child: Container(
+            padding: EdgeInsets.only(top: 15),
             width: double.infinity,
-            decoration: BoxDecoration(
-                color: white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25))),
             child: SingleChildScrollView(
                 child: getAccountSection()),
           ),
@@ -240,14 +253,14 @@ class _DashbaordPageState extends State<DashbaordPage> {
 
   Widget getAccountSection() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 22.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Accounts",
-            style: TextStyle(
-                fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),
+            style: GoogleFonts.montserrat(
+                fontSize: 15, fontWeight: FontWeight.w800, color: black),
           ),
           SizedBox(height: 10,),
           Column(
@@ -255,19 +268,21 @@ class _DashbaordPageState extends State<DashbaordPage> {
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.wallet, "RDS"),
+              }, Icons.wallet, "RDS",Colors.blue.shade100),
+              SizedBox(width: 15,),
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.wallet, "RD"),
+              }, Icons.credit_card, "RD",Colors.green.shade100),
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.wallet, "Fixed Deposite"),
+              }, Icons.account_balance_wallet_outlined, "Fixed Deposite",Colors.orange.shade100),
+              SizedBox(width: 15,),
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.wallet, "Fixed Deposite")
+              }, Icons.savings_outlined, "Fixed Deposite",Colors.deepPurple.shade100)
             ],
           ),
         ],
@@ -275,26 +290,24 @@ class _DashbaordPageState extends State<DashbaordPage> {
     );
   }
 
-  Widget Accounts(Function() onTap, IconData icons, String title) {
+  Widget Accounts1(Function() onTap, IconData icons, String title) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(18),
-        margin: EdgeInsets.only(bottom: 10),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: black.withOpacity(0.1),
-              spreadRadius: 2,
-              blurRadius: 10,
-            ),
-          ],
-        ),
+        padding: EdgeInsets.symmetric(vertical: 18,horizontal: 10),
+        margin: EdgeInsets.only(bottom: 15),
+        // decoration: BoxDecoration(
+        //   //color: white,
+        //   borderRadius: BorderRadius.circular(12),
+        //   boxShadow: [
+        //     BoxShadow(
+        //       color: black.withOpacity(0.1),
+        //       spreadRadius: 3,
+        //       blurRadius: 10,
+        //     ),
+        //   ],
+        // ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
@@ -302,18 +315,26 @@ class _DashbaordPageState extends State<DashbaordPage> {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                      color: secondary.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Center(
-                    child: Icon(
-                      icons,
-                      color: Colors.black,
-                      size: 20,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(width: 1.5, color: black),
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.all(2), // Creates the white space between the border and the inner container
+                    decoration: BoxDecoration(
+                      color: primary0.withOpacity(0.9),
+                      borderRadius: BorderRadius.circular(9), // Should be slightly smaller to fit inside
+                    ),
+                    child: Center(
+                      child: Icon(
+                        icons,
+                        color: Colors.black,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  width: 15,
+                  height: 10,
                 ),
                 Text(
                   title,
@@ -324,12 +345,54 @@ class _DashbaordPageState extends State<DashbaordPage> {
                 ),
               ],
             ),
-            Icon(
-              Icons.keyboard_arrow_right,
-              color: black,
-            )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget Accounts(Function() onTap, IconData icons, String title,Color? color){
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 08.0),
+      margin: const EdgeInsets.symmetric(vertical: 5.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Color(0xFF6F6AD7).withOpacity(0.1)
+      ),
+      child: ListTile(
+        leading: Container(
+          width: 45,
+          height: 45,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Center(
+            child: Icon(
+              icons,
+              color: black,
+              size: 20,
+            ),
+          ),
+        ),
+        trailing: Icon(
+          Icons.keyboard_arrow_right,
+          color: black,
+        ),
+        title: Text(
+          title,
+          style: GoogleFonts.varela(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black),
+        ),
+        // subtitle: Text(
+        //   title,
+        //   style: TextStyle(
+        //       fontSize: 15,
+        //       fontWeight: FontWeight.w600,
+        //       color: Colors.black),
+        // ),
       ),
     );
   }
