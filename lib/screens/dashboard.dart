@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,6 +17,34 @@ class DashbaordPage extends StatefulWidget {
 class _DashbaordPageState extends State<DashbaordPage> {
   int pageIndex = 0;
   bool _isBalanceVisible = false;
+  PageController _pageController = PageController();
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoScroll();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _startAutoScroll() {
+    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
+      if (_pageController.hasClients) {
+        int nextPage = _pageController.page!.round() + 1;
+        if (nextPage == 4) {
+          nextPage = 0;
+        }
+        _pageController.animateToPage(nextPage,
+            duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +61,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
       children: [
         Container(
           // color: primary,
-          padding:  EdgeInsets.only(left: 13,right: 13, top: 10,bottom: 5),
+          padding:  EdgeInsets.only(left: 13,right: 13, top: 25,bottom: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -77,10 +107,17 @@ class _DashbaordPageState extends State<DashbaordPage> {
           margin: EdgeInsets.only(bottom: 22,left: 22,right: 22,top: 10),
           height: 160,
           decoration: BoxDecoration(
-            color: Color(0xFF6F6AD7), borderRadius: BorderRadius.circular(12),
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFFFA594B),
+                Color(0xFFE1AB23)],
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+            ),
+            borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.blue.withOpacity(0.3),
+                color:Color(0xFF6F6AD7).withOpacity(0.4),
                 spreadRadius: 4,
                 blurRadius: 10,
                 offset: Offset(0, 7), // changes position of shadow
@@ -160,11 +197,23 @@ class _DashbaordPageState extends State<DashbaordPage> {
 
         Container(
           margin: EdgeInsets.symmetric(horizontal: 22),
-          height: 100,
+          height: 120,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: black,
               borderRadius: BorderRadius.circular(10)
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: PageView(
+              scrollDirection: Axis.horizontal,
+              controller: _pageController,
+              children: [
+                Image.asset('assets/images/AD1.jpg', fit: BoxFit.cover),
+                Image.asset('assets/images/AD2.jpg', fit: BoxFit.cover),
+                Image.asset('assets/images/AD3.jpg', fit: BoxFit.cover),
+                Image.asset('assets/images/AD4.jpg', fit: BoxFit.cover),
+              ],
+            ),
           ),
         ),
 
@@ -262,7 +311,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
             style: GoogleFonts.montserrat(
                 fontSize: 15, fontWeight: FontWeight.w800, color: black),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: 5,),
           Column(
             children: [
               Accounts(() {
@@ -294,6 +343,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 100,
         padding: EdgeInsets.symmetric(vertical: 18,horizontal: 10),
         margin: EdgeInsets.only(bottom: 15),
         // decoration: BoxDecoration(
@@ -328,7 +378,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
                       child: Icon(
                         icons,
                         color: Colors.black,
-                        size: 20,
+                        size: 30,
                       ),
                     ),
                   ),
@@ -338,7 +388,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
                 ),
                 Text(
                   title,
-                  style: TextStyle(
+                  style: GoogleFonts.varela(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: Colors.black),
@@ -353,11 +403,11 @@ class _DashbaordPageState extends State<DashbaordPage> {
 
   Widget Accounts(Function() onTap, IconData icons, String title,Color? color){
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 08.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Color(0xFF6F6AD7).withOpacity(0.1)
+        color: Color(0xFFFCF0F0)
       ),
       child: ListTile(
         leading: Container(
@@ -371,7 +421,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
             child: Icon(
               icons,
               color: black,
-              size: 20,
+              size: 22,
             ),
           ),
         ),
