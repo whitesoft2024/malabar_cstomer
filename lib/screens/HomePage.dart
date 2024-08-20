@@ -59,14 +59,14 @@ class _homepageState extends State<homepage> {
 
   Widget getFooter() {
     List<IconData> iconItems = [
-      Icons.apps_outlined,
+      Icons.home_rounded,
       Ionicons.person_circle,
     ];
 
     return AnimatedBottomNavigationBar(
-      activeColor: black,
+      activeColor: Color(0xFF6F6AD7),
       splashColor: secondary,
-      inactiveColor: Colors.black.withOpacity(0.5),
+      inactiveColor: Colors.black,
       icons: iconItems,
       activeIndex: pageIndex,
       gapLocation: GapLocation.center,

@@ -61,7 +61,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
       children: [
         Container(
           // color: primary,
-          padding:  EdgeInsets.only(left: 13,right: 13, top: 25,bottom: 5),
+          padding:  EdgeInsets.only(left: 13,right: 13, top: 28,bottom: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -109,18 +109,18 @@ class _DashbaordPageState extends State<DashbaordPage> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color(0xFFFA594B),
-                Color(0xFFE1AB23)],
-              begin: Alignment.topLeft,
+                Color(0xFF6F6AD7),
+                Color(0xFF9A98C0),],
+              begin: Alignment.bottomLeft,
               end: Alignment.topRight,
             ),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color:Color(0xFF6F6AD7).withOpacity(0.4),
+                color:Color(0xFF8F8BDA).withOpacity(0.4),
                 spreadRadius: 4,
                 blurRadius: 10,
-                offset: Offset(0, 7), // changes position of shadow
+                offset: Offset(0, 6), // changes position of shadow
               ),
             ],
 
@@ -317,24 +317,77 @@ class _DashbaordPageState extends State<DashbaordPage> {
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.wallet, "RDS",Colors.blue.shade100),
-              SizedBox(width: 15,),
+              }, "assets/images/deposit 1.png", "RDS",Color(0xFF9592D7)),
+
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.credit_card, "RD",Colors.green.shade100),
+              }, "assets/images/rd.png", "RD",Color(0xFF9793E0)),
+
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.account_balance_wallet_outlined, "Fixed Deposite",Colors.orange.shade100),
-              SizedBox(width: 15,),
+              }, "assets/images/rate.png", "Fixed Deposite",Color(0xFF9592D7)),
+
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, Icons.savings_outlined, "Fixed Deposite",Colors.deepPurple.shade100)
+              }, "assets/images/saving.png", "Savings",Color(0xFF9592D7)),
+
+              Accounts(() {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CardPage()));
+              }, "assets/images/groups.png", "GDCS",Color(0xFF9592D7))
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget Accounts(Function() onTap, String image, String title, Color? color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 5.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: const Color(0xFFFFFFFF),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF8F8BDA).withOpacity(0.4),
+            spreadRadius: 0,
+            blurRadius: 8,
+          ),
+        ],
+      ),
+      child: ListTile(
+        onTap: onTap,
+        leading: Container(
+          padding: EdgeInsets.all(7),
+          width: 45,
+          height: 45,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Center(
+            child: Image(
+              image: AssetImage(image as String),
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+        trailing: const Icon(
+          Icons.keyboard_arrow_right,
+          color: Colors.black, // Use Colors.black instead of black
+        ),
+        title: Text(
+          title,
+          style: GoogleFonts.jost(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: Colors.black),
+        ),
       ),
     );
   }
@@ -397,52 +450,6 @@ class _DashbaordPageState extends State<DashbaordPage> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget Accounts(Function() onTap, IconData icons, String title,Color? color){
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      margin: const EdgeInsets.symmetric(vertical: 5.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Color(0xFFFCF0F0)
-      ),
-      child: ListTile(
-        leading: Container(
-          width: 45,
-          height: 45,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Center(
-            child: Icon(
-              icons,
-              color: black,
-              size: 22,
-            ),
-          ),
-        ),
-        trailing: Icon(
-          Icons.keyboard_arrow_right,
-          color: black,
-        ),
-        title: Text(
-          title,
-          style: GoogleFonts.varela(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: Colors.black),
-        ),
-        // subtitle: Text(
-        //   title,
-        //   style: TextStyle(
-        //       fontSize: 15,
-        //       fontWeight: FontWeight.w600,
-        //       color: Colors.black),
-        // ),
       ),
     );
   }
