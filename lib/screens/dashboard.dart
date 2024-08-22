@@ -49,7 +49,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primary,
+      backgroundColor: Color(0xFFF2F2F8),
       body: getBody(),
     );
   }
@@ -103,13 +103,35 @@ class _DashbaordPageState extends State<DashbaordPage> {
         // ),
 
         Container(
+          margin: EdgeInsets.symmetric(vertical: 5,horizontal: 22),
+          height: 120,
           width: double.infinity,
-          margin: EdgeInsets.only(bottom: 22,left: 22,right: 22,top: 10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12)
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: PageView(
+              scrollDirection: Axis.horizontal,
+              controller: _pageController,
+              children: [
+                Image.asset('assets/images/AD1.jpg', fit: BoxFit.cover),
+                Image.asset('assets/images/AD2.jpg', fit: BoxFit.cover),
+                Image.asset('assets/images/AD3.jpg', fit: BoxFit.cover),
+                Image.asset('assets/images/AD4.jpg', fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ),
+
+        Container(
+          width: double.infinity,
+          margin: EdgeInsets.only(bottom: 5,left: 22,right: 22,top: 10),
           height: 160,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color(0xFF6F6AD7),
+                Color(0xFF6E6AD7),
                 Color(0xFF9A98C0),],
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
@@ -117,7 +139,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color:Color(0xFF8F8BDA).withOpacity(0.4),
+                color:const Color(0xFF8F8BDA).withOpacity(0.4),
                 spreadRadius: 4,
                 blurRadius: 10,
                 offset: Offset(0, 6), // changes position of shadow
@@ -195,27 +217,6 @@ class _DashbaordPageState extends State<DashbaordPage> {
           ),
         ),
 
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 22),
-          height: 120,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10)
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              controller: _pageController,
-              children: [
-                Image.asset('assets/images/AD1.jpg', fit: BoxFit.cover),
-                Image.asset('assets/images/AD2.jpg', fit: BoxFit.cover),
-                Image.asset('assets/images/AD3.jpg', fit: BoxFit.cover),
-                Image.asset('assets/images/AD4.jpg', fit: BoxFit.cover),
-              ],
-            ),
-          ),
-        ),
 
         // Container(
         //   width: double.infinity,
@@ -317,27 +318,27 @@ class _DashbaordPageState extends State<DashbaordPage> {
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, "assets/images/deposit 1.png", "RDS",Color(0xFF9592D7)),
+              }, "assets/images/deposit 1.png", "RDS",Color(0xFFFFFFFF)),
 
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, "assets/images/rd.png", "RD",Color(0xFF9793E0)),
+              }, "assets/images/rd.png", "RD",Color(0xFFFFFFFF)),
 
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, "assets/images/rate.png", "Fixed Deposite",Color(0xFF9592D7)),
+              }, "assets/images/rate.png", "Fixed Deposite",Color(0xFFFFFFFF)),
 
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, "assets/images/saving.png", "Savings",Color(0xFF9592D7)),
+              }, "assets/images/saving.png", "Savings",Color(0xFFFFFFFF)),
 
               Accounts(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage()));
-              }, "assets/images/groups.png", "GDCS",Color(0xFF9592D7))
+              }, "assets/images/groups.png", "GDCS",Color(0xFFFFFFFF))
             ],
           ),
         ],
@@ -378,6 +379,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
           ),
         ),
         trailing: const Icon(
+          size: 21,
           Icons.keyboard_arrow_right,
           color: Colors.black, // Use Colors.black instead of black
         ),
