@@ -1,119 +1,132 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
-import '../animation/change_screen_animation.dart';
-import 'components/center_widget/center_widget.dart';
-import 'components/login_content.dart';
-import 'components/forget_pass.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:malabar_cstomer/constants.dart';
+import 'package:malabar_cstomer/screens/HomePage.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import 'dashboard.dart';
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _LoginScreenState extends State<LoginScreen> with TickerProviderStateMixin  {
-  bool isForgotPassword = false;
-
-  @override
-  void initState() {
-    super.initState();
-    ChangeScreenAnimation.initialize(this);
-  }
-
-  @override
-  void dispose() {
-    ChangeScreenAnimation.controller.dispose();
-    super.dispose();
-  }
-
-  void toggleForgotPassword() {
-    setState(() {
-      isForgotPassword = !isForgotPassword;
-    });
-    if (isForgotPassword) {
-      ChangeScreenAnimation.forward();
-    } else {
-      ChangeScreenAnimation.reverse();
-    }
-  }
-
-  void handleOkButton() {
-    toggleForgotPassword();
-  }
-
-  Widget topWidget(double screenWidth) {
-    return Transform.rotate(
-      angle: -35 * math.pi / 180,
-      child: Container(
-        width: 1.2 * screenWidth,
-        height: 1.2 * screenWidth,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(150),
-          gradient: const LinearGradient(
-            begin: Alignment(-0.2, -0.8),
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xADF32C15),
-              Color(0xB3EF6C0F),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget bottomWidget(double screenWidth) {
-    return Container(
-      width: 1.5 * screenWidth,
-      height: 1.5 * screenWidth,
-      decoration: const BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: LinearGradient(
-          begin: Alignment(0.6, -1.1),
-          end: Alignment(0.7, 0.8),
-          colors: [
-            Color(0xDBE73131),
-            Color(0xFF332D),
-          ],
-        ),
-      ),
-    );
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+    return MaterialApp(
+      home:  LoginScreen(),
+    );
+  }
+}
 
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: [
-          Positioned(
-            top: -160,
-            left: -30,
-            child: topWidget(screenSize.width),
+        children:[
+          Positioned.fill(
+            child: Image.asset(
+              "assets/images/bg.png", // Replace with your background image path
+              fit: BoxFit.cover,
+            ),
           ),
-          Positioned(
-            bottom: -180,
-            left: -40,
-            child: bottomWidget(screenSize.width),
+          Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 22,vertical: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    children: [
+                       Text(
+                        "LOGIN",
+                        style: GoogleFonts.varela(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        // Align the image to the center
+                        children: [
+                          Image.asset("assets/images/login2.png",width: 270,),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    // Add padding for better UI
+                    child: Form(
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: TextFormField(
+                              style: GoogleFonts.varela(fontSize: 13),
+                              keyboardType: TextInputType.emailAddress,
+                              textInputAction: TextInputAction.next,
+                              cursorColor: kPrimaryColor1,
+                              onSaved: (email) {},
+                              decoration: const InputDecoration(
+                                hintText: "Your email",
+                                prefixIcon: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 16),
+                                  child: Icon(Icons.person,),
+                                ),
+                                isDense: true,
+                              ),
+                            ),
+                          ),
+                          TextFormField(
+                            style: GoogleFonts.varela(fontSize: 13),
+                            textInputAction: TextInputAction.done,
+                            obscureText: true,
+                            cursorColor: kPrimaryColor1,
+                            decoration: const InputDecoration(
+                              hintText: "Your password",
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 13),
+                                child: Icon(Icons.lock,),
+                              ),
+                              isDense: true,
+                            ),
+                          ),
+                          const SizedBox(height: 35),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => homepage()));
+                            },
+                            child: Text(
+                              "Login".toUpperCase(),
+                              style: GoogleFonts.varela(fontSize: 13),
+                            ),
+                          ),
+                          SizedBox(height: 10,),
+                          TextButton(
+                              onPressed: (){
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => homepage()));
+                              },
+                              child: Text("Forget Password !")
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          CenterWidget(size: screenSize),
-          AnimatedSwitcher(
-            duration: Duration(milliseconds: 700),
-            // transitionBuilder: (Widget child, Animation<double> animation) {
-            //   return FadeTransition(
-            //     opacity: animation,
-            //     child: child,
-            //   );
-            // },
-            child: isForgotPassword
-                ? PasswordContent(onBack: toggleForgotPassword, onOk: handleOkButton,)
-                : LoginContent(onForgotPassword: toggleForgotPassword),
-          )
+        ),
         ],
       ),
     );
   }
 }
+

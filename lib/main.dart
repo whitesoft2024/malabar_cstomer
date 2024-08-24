@@ -15,11 +15,30 @@ class MyApp extends StatelessWidget {
       title: 'Login App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: kBackgroundColor,
-        textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: kPrimaryColor,
-          fontFamily: 'Montserrat',
-        ),
+          primaryColor: kPrimaryColor1,
+          scaffoldBackgroundColor: Colors.white,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              foregroundColor: Colors.white,
+              backgroundColor: kPrimaryColor1,
+              shape: const StadiumBorder(),
+              maximumSize: const Size(double.infinity, 50),
+              minimumSize: const Size(double.infinity, 50),
+            ),
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            filled: true,
+            fillColor: kPrimaryLightColor,
+            iconColor: kPrimaryColor1,
+            prefixIconColor: kPrimaryColor1,
+            contentPadding: EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              borderSide: BorderSide.none,
+            ),
+          )
       ),
       home:  LoginScreen(),
     );
