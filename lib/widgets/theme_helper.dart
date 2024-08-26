@@ -1,21 +1,28 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+
+import '../constants.dart';
 
 
 class ThemeHelper{
 
-  InputDecoration textInputDecoration([String lableText="", String hintText = ""]){
+  InputDecoration textInputDecoration([String lableText="", String hintText = "",Icon? icon]){
     return InputDecoration(
       labelText: lableText,
+      labelStyle: GoogleFonts.varela(fontSize:14,color: kPrimaryColor1,fontWeight: FontWeight.w600),
       hintText: hintText,
       fillColor: Colors.white,
+      iconColor: kPrimaryColor1,
+      prefixIconColor: kPrimaryColor1,
+      prefixIcon: icon,
       filled: true,
       contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey)),
-      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey.shade400)),
-      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.red, width: 2.0)),
-      focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.red, width: 2.0)),
+      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey,width: 1.5)),
+      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey.shade400,)),
+      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.black87, width: 1.5)),
+      focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.black45, width: 2.0)),
     );
   }
 

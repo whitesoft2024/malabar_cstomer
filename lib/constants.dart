@@ -43,6 +43,6 @@ const kGradient = LinearGradient(
 );
 
 const kPrimaryColor1 = Color(0xFF6E6AD7);
-const kPrimaryLightColor = Color(0xFFDCDFFD);
+const kPrimaryLightColor = Color(0xFFE9ECFF);
 
 const double defaultPadding = 16.0;

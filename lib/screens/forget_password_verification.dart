@@ -1,13 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:malabar_cstomer/screens/HomePage.dart';
+import 'package:malabar_cstomer/constants.dart';
 import 'package:malabar_cstomer/widgets/background.dart';
 import 'package:otp_text_field/otp_field.dart';
+import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
 
 import '../widgets/header_widget.dart';
 import '../widgets/theme_helper.dart';
+import 'forget_password_change_page.dart';
 
 
 class ForgotPasswordVerificationPage extends StatefulWidget {
@@ -28,9 +30,9 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
     return Scaffold(
         backgroundColor: Colors.white,
         body: Background(
-          gradientColors1: [Colors.red, Colors.amber],
-          gradientColors2: [Colors.blue, Colors.green],
-          gradientColors3: [Colors.purple, Colors.pink],
+          // gradientColors1: [Colors.red, Colors.amber],
+          // gradientColors2: [Colors.blue, Colors.green],
+          // gradientColors3: [Colors.purple, Colors.pink],
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -53,17 +55,17 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Verification',
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(
                                     fontSize: 35,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black54
+                                    color: Colors.black
                                 ),
                                 // textAlign: TextAlign.center,
                               ),
                               SizedBox(height: 10,),
                               Text(
                                 'Enter the verification code we just sent you on your email address.',
-                                style: TextStyle(
+                                style: GoogleFonts.varela(
                                   // fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black54
@@ -78,20 +80,30 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                           key: _formKey,
                           child: Column(
                             children: <Widget>[
-                              OTPTextField(
-                                length: 4,
-                                width: 300,
-                                fieldWidth: 50,
-                                style: TextStyle(
-                                    fontSize: 30
+                              Theme(
+                                data: ThemeData(
+                                  textSelectionTheme: TextSelectionThemeData(
+                                    cursorColor: Colors.black54,  // Change this to your desired cursor color
+                                  ),
                                 ),
-                                textFieldAlignment: MainAxisAlignment.spaceAround,
-                                fieldStyle: FieldStyle.underline,
-                                onCompleted: (pin) {
-                                  setState(() {
-                                    _pinSuccess = true;
-                                  });
-                                },
+                                child: OTPTextField(
+                                  length: 4,
+                                  width: 300,
+                                  fieldWidth: 50,
+                                  style: GoogleFonts.roboto( // Change font to Roboto
+                                    fontSize: 30,color: Colors.black
+                                  ),
+                                  otpFieldStyle: OtpFieldStyle(
+                                    focusBorderColor: Colors.black,
+                                  ),
+                                  textFieldAlignment: MainAxisAlignment.spaceAround,
+                                  fieldStyle: FieldStyle.box,
+                                  onCompleted: (pin) {
+                                    setState(() {
+                                      _pinSuccess = true;
+                                    });
+                                  },
+                                ),
                               ),
                               SizedBox(height: 50.0),
                               Text.rich(
@@ -99,7 +111,7 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                                   children: [
                                     TextSpan(
                                       text: "If you didn't receive a code! ",
-                                      style: TextStyle(
+                                      style: GoogleFonts.varela(
                                         color: Colors.black38,
                                       ),
                                     ),
@@ -118,7 +130,7 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                                         },
                                       style: GoogleFonts.varela(
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.orange
+                                          color: kPrimaryColor1
                                       ),
                                     ),
                                   ],
@@ -144,7 +156,7 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                                   onPressed: _pinSuccess ? () {
                                     Navigator.of(context).pushAndRemoveUntil(
                                         MaterialPageRoute(
-                                            builder: (context) => homepage()
+                                            builder: (context) => ForgotChnagePage()
                                         ),
                                             (Route<dynamic> route) => false
                                     );

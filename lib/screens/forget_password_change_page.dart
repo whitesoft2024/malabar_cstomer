@@ -1,24 +1,21 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:malabar_cstomer/constants.dart';
+import 'package:malabar_cstomer/screens/loginpage.dart';
 import 'package:malabar_cstomer/widgets/background.dart';
 
-import '../widgets/header_widget.dart';
 import '../widgets/theme_helper.dart';
 import 'forget_password_verification.dart';
-import 'loginpage.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({Key? key}) : super(key: key);
+class ForgotChnagePage extends StatefulWidget {
+  const ForgotChnagePage({Key? key}) : super(key: key);
 
   @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+  _ForgotChnagePageState createState() => _ForgotChnagePageState();
 }
 
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+class _ForgotChnagePageState extends State<ForgotChnagePage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -50,7 +47,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Forgot Password?',
+                              Text('Enter New Password',
                                 style: GoogleFonts.varela(
                                     fontSize: 35,
                                     fontWeight: FontWeight.bold,
@@ -84,10 +81,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           child: Column(
                             children: <Widget>[
                               Container(
+                                padding: EdgeInsets.only(bottom: 10),
                                 child: TextFormField(
                                   style: GoogleFonts.varela(fontSize: 14,fontWeight: FontWeight.w600),
                                   cursorColor: Colors.orangeAccent,
-                                  decoration: ThemeHelper().textInputDecoration("Email", "Enter your email", Icon(Icons.person, size: 21),).
+                                  decoration: ThemeHelper().textInputDecoration("New Mobile Number", "Enter your mobile number", Icon(Icons.phone_android_rounded, size: 17),).
                                   copyWith(
                                     errorStyle: GoogleFonts.mada(
                                       color: Colors.black, // Change this to your desired color
@@ -95,12 +93,58 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                   ),
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return "Email can't be empty";
-                                    } else if (!RegExp(
-                                        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                                        .hasMatch(val)) {
-                                      return "Enter a valid email address";
+                                      return "Mobile number can't be empty";
                                     }
+                                    return null;
+                                  },
+                                ),
+                                decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TextFormField(
+                                  style: GoogleFonts.varela(fontSize: 14,fontWeight: FontWeight.w600),
+                                  cursorColor: Colors.orangeAccent,
+                                  decoration: ThemeHelper().textInputDecoration("New Password", "Enter new password", Icon(Icons.lock, size: 17),).
+                                  copyWith(
+                                    errorStyle: GoogleFonts.mada(
+                                      color: Colors.black, // Change this to your desired color
+                                    ),
+                                  ),
+                                  validator: (val) {
+                                    if (val!.isEmpty) {
+                                      return "Password can't be empty";
+                                    }
+                                    // else if (!RegExp(
+                                    //     r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                    //     .hasMatch(val)) {
+                                    //   return "Enter a valid email address";
+                                    // }
+                                    return null;
+                                  },
+                                ),
+                                decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(bottom: 10),
+                                child: TextFormField(
+                                  style: GoogleFonts.varela(fontSize: 14,fontWeight: FontWeight.w600),
+                                  cursorColor: Colors.orangeAccent,
+                                  decoration: ThemeHelper().textInputDecoration("Confirm Password", "Re-Enter new password", Icon(Icons.password_sharp, size: 17),).
+                                  copyWith(
+                                    errorStyle: GoogleFonts.mada(
+                                      color: Colors.black, // Change this to your desired color
+                                    ),
+                                  ),
+                                  validator: (val) {
+                                    if (val!.isEmpty) {
+                                      return "Password can't be empty";
+                                    }
+                                    // else if (!RegExp(
+                                    //     r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                    //     .hasMatch(val)) {
+                                    //   return "Enter a valid email address";
+                                    // }
                                     return null;
                                   },
                                 ),
@@ -116,7 +160,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                     padding: const EdgeInsets.fromLTRB(
                                         40, 10, 40, 10),
                                     child: Text(
-                                      "Send".toUpperCase(),
+                                      "done".toUpperCase(),
                                       style: GoogleFonts.montserrat(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -129,33 +173,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ForgotPasswordVerificationPage()),
+                                            builder: (context) => LoginScreen()),
                                       );
                                     }
                                   },
                                 ),
                               ),
                               SizedBox(height: 30.0),
-                              Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(text: "Remember your password? ",style: GoogleFonts.varela()),
-                                    TextSpan(
-                                      text: 'Login',
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(builder: (context) => LoginScreen()),
-                                          );
-                                        },
-                                      style: GoogleFonts.varela(
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ],
                           ),
                         )
