@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       // Align the image to the center
                       children: [
-                        Image.asset("assets/images/login2.png",width: 270,),
+                        Expanded(child: Image.asset("assets/images/login2.png",width: 270,)),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -67,9 +67,9 @@ class LoginScreen extends StatelessWidget {
                             textInputAction: TextInputAction.next,
                             cursorColor: kPrimaryColor1,
                             onSaved: (email) {},
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: "Your email",
-                              prefixIcon: Padding(
+                              prefixIcon: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 16),
                                 child: Icon(Icons.person,),
                               ),
@@ -108,7 +108,8 @@ class LoginScreen extends StatelessWidget {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) => ForgotPasswordPage()));
                             },
-                            child: Text("Forget Password !")
+                            child: Text("Forget Password !",
+                              style: GoogleFonts.varela(color: black),)
                         ),
                       ],
                     ),

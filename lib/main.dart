@@ -27,17 +27,24 @@ class MyApp extends StatelessWidget {
               minimumSize: const Size(double.infinity, 50),
             ),
           ),
-          inputDecorationTheme: const InputDecorationTheme(
+          inputDecorationTheme: InputDecorationTheme(
             filled: true,
-            fillColor: kPrimaryLightColor,
+            fillColor: white,
             iconColor: kPrimaryColor1,
             prefixIconColor: kPrimaryColor1,
-            contentPadding: EdgeInsets.symmetric(
+            contentPadding: const EdgeInsets.symmetric(
                 horizontal: defaultPadding, vertical: defaultPadding),
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(30)),
-              borderSide: BorderSide.none,
+              borderSide: BorderSide(
+                color: grey,
+                width: 1,
+              ),
             ),
+            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: const BorderSide(color: Colors.grey,width: 1.5)),
+            enabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey.shade400,)),
+            errorBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.black87, width: 1.5)),
+            focusedErrorBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.black45, width: 2.0)),
           )
       ),
       home:  LoginScreen(),

@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../constants.dart';
 import '../data_json/blance_json.dart';
@@ -46,10 +48,20 @@ class _DashbaordPageState extends State<DashbaordPage> {
     });
   }
 
+  final myitems = [
+    'assets/images/AD1.jpg',
+    'assets/images/AD2.jpg',
+    'assets/images/AD3.jpg',
+    'assets/images/AD4.jpg',
+    "assets/images/goldloan.jpg",
+  ];
+
+  int myCurrentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF2F2F8),
+      backgroundColor: white,
       body: getBody(),
     );
   }
@@ -61,24 +73,25 @@ class _DashbaordPageState extends State<DashbaordPage> {
       children: [
         Container(
           // color: primary,
-          padding:  EdgeInsets.only(left: 13,right: 13, top: 28,bottom: 5),
+          padding:  EdgeInsets.only(left: 22,right: 10, top: 28,bottom: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //Image(image: AssetImage("assets/images/mscs_1.png"),height: 30,width: 40,fit: BoxFit.contain,),
-              IconButton(
-                onPressed: () {},
-                icon: CircleAvatar(
-                  radius: 19,
-                  backgroundImage: AssetImage(
-                      "assets/images/man.png"),
-                ),
-              ),
+              Image(image: AssetImage("assets/images/user.png"),height: 30,width: 40,fit: BoxFit.contain,),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: CircleAvatar(
+              //     radius: 19,
+              //     backgroundImage: AssetImage(
+              //         "assets/images/man.png"),
+              //   ),
+              // ),
+              SizedBox(width: 5,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Hi, Murshid",style: GoogleFonts.montserrat(fontSize: 11,color: Colors.grey.shade400,fontWeight: FontWeight.w600),),
-                  Text("Good Morning",style: GoogleFonts.montserrat(fontSize: 15,color: primary2,fontWeight: FontWeight.w800),),
+                  Text("Hi, Murshid",style: GoogleFonts.montserrat(fontSize: 10,color: Colors.grey.shade400,fontWeight: FontWeight.w600),),
+                  Text("Good Morning",style: GoogleFonts.varela(fontSize: 13,color: primary2,fontWeight: FontWeight.w700),),
                 ],
               ),
               Spacer(),
@@ -102,199 +115,155 @@ class _DashbaordPageState extends State<DashbaordPage> {
         //   ),
         // ),
 
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 5,horizontal: 22),
-          height: 120,
-          width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12)
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              controller: _pageController,
-              children: [
-                Image.asset('assets/images/AD1.jpg', fit: BoxFit.cover),
-                Image.asset('assets/images/AD2.jpg', fit: BoxFit.cover),
-                Image.asset('assets/images/AD3.jpg', fit: BoxFit.cover),
-                Image.asset('assets/images/AD4.jpg', fit: BoxFit.cover),
-              ],
+        Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            CarouselSlider(
+              options: CarouselOptions(
+                viewportFraction: 1,
+                autoPlay: true,
+                height: 140,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayInterval: const Duration(seconds: 4),
+                enlargeCenterPage: true,
+                aspectRatio: 2.0,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    myCurrentIndex = index;
+                  });
+                },
+              ),
+              items: myitems.map((imageUrl) {
+                return RoundedImages(imageUrl: imageUrl);
+              }).toList(),
             ),
-          ),
+            Positioned(
+              bottom: 10,  // Adjust the position of the indicator
+              child: AnimatedSmoothIndicator(
+                activeIndex: myCurrentIndex,
+                count: myitems.length,
+                effect: JumpingDotEffect(
+                  dotHeight: 3,
+                  dotWidth: 12,
+                  spacing: 7,
+                  dotColor: kPrimaryLightColor,
+                  activeDotColor: kPrimaryColor1,
+                  paintStyle: PaintingStyle.fill,
+                ),
+              ),
+            ),
+          ],
         ),
 
-        Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(bottom: 5,left: 22,right: 22,top: 10),
-          height: 160,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF6E6AD7),
-                Color(0xFF9A98C0),],
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-            ),
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color:const Color(0xFF8F8BDA).withOpacity(0.4),
-                spreadRadius: 4,
-                blurRadius: 10,
-                offset: Offset(0, 6), // changes position of shadow
-              ),
-            ],
 
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
+
+
+        Expanded(
+          child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Saving account",style: GoogleFonts.varela(color: white.withOpacity(0.8),fontSize: 10,fontWeight: FontWeight.w600),),
-                    SizedBox(
-                      height: 10,
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(bottom: 5,left: 22,right: 22,top: 8),
+                  height: 170,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xBAF60403).withOpacity(0.6),
+                        Color(0xF2070707),],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      tileMode: TileMode.clamp
                     ),
-                    Text(
-                      "1234 5678 9000",
-                      style: GoogleFonts.varela(
-                          color: white.withOpacity(0.9),
-                          fontSize: 20,
-                          wordSpacing: 15),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color:black.withOpacity(0.4),
+                        spreadRadius: 3,
+                        blurRadius: 10,
+                        offset: Offset(0, 7), // changes position of shadow
+                      ),
+                    ],
+                
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          _isBalanceVisible ? "₹2,10,002.00" : "   * * * * * *",
-                          style: GoogleFonts.varela(
-                            color: white.withOpacity(0.8),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                          ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Saving account",style: GoogleFonts.varela(color: white.withOpacity(0.8),fontSize: 10,fontWeight: FontWeight.w600),),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "1234 5678 9000",
+                              style: GoogleFonts.varela(
+                                  color: white.withOpacity(0.9),
+                                  fontSize: 20,
+                                  wordSpacing: 15),
+                            )
+                          ],
                         ),
-                        SizedBox(height: 4,),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                            "Account balance",
-                            style: GoogleFonts.varela(fontSize: 10,color: white.withOpacity(0.8),fontWeight: FontWeight.w600),
-                          ),
-                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  _isBalanceVisible ? "₹2,10,002.00" : "   * * * * * *",
+                                  style: GoogleFonts.varela(
+                                    color: white.withOpacity(0.8),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(height: 4,),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                    "Account balance",
+                                    style: GoogleFonts.varela(fontSize: 10,color: white.withOpacity(0.8),fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isBalanceVisible = true;
+                                });
+                                Future.delayed(Duration(seconds: 3), () {
+                                  setState(() {
+                                    _isBalanceVisible = false;
+                                  });
+                                });
+                              },
+                              icon: Icon(
+                                Icons.remove_red_eye_rounded,
+                                color: white.withOpacity(0.8),
+                              ),
+                            )
+                          ],
+                        )
                       ],
                     ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isBalanceVisible = true;
-                        });
-                        Future.delayed(Duration(seconds: 3), () {
-                          setState(() {
-                            _isBalanceVisible = false;
-                          });
-                        });
-                      },
-                      icon: Icon(
-                        Icons.remove_red_eye_rounded,
-                        color: white.withOpacity(0.8),
-                      ),
-                    )
-                  ],
-                )
+                  ),
+                ),
+
+                Container(
+                  padding: EdgeInsets.only(top: 15),
+                  width: double.infinity,
+                  child: getAccountSection(),
+                ),
               ],
             ),
-          ),
-        ),
-
-
-        // Container(
-        //   width: double.infinity,
-        //   height: size.height * 0.25,
-        //   decoration: BoxDecoration(color: primary),
-        //   child: Column(
-        //     children: [
-        //       Container(
-        //         width: double.infinity,
-        //         height: 110,
-        //         child: SingleChildScrollView(
-        //           scrollDirection: Axis.horizontal,
-        //           child: Row(
-        //             children: List.generate(balanceLists.length, (index) {
-        //               return Padding(
-        //                 padding: const EdgeInsets.only(right: 20),
-        //                 child: Container(
-        //                   width: size.width * 0.7,
-        //                   child: Column(
-        //                     mainAxisAlignment: MainAxisAlignment.center,
-        //                     children: [
-        //                       Row(
-        //                         mainAxisAlignment: MainAxisAlignment.center,
-        //                         crossAxisAlignment: CrossAxisAlignment.start,
-        //                         children: [
-        //                           Padding(
-        //                             padding: const EdgeInsets.only(top: 5),
-        //                             child: Text(
-        //                               balanceLists[index]['currency'],
-        //                               style: TextStyle(
-        //                                   fontSize: 17,
-        //                                   color: index == 0
-        //                                       ? Colors.black
-        //                                       : Colors.black.withOpacity(0.5),
-        //                                   fontWeight: FontWeight.bold),
-        //                             ),
-        //                           ),
-        //                           SizedBox(
-        //                             width: 5,
-        //                           ),
-        //                           Text(
-        //                             balanceLists[index]['amount'],
-        //                             style: TextStyle(
-        //                                 fontSize: 35,
-        //                                 color: index == 0
-        //                                     ? black
-        //                                     : black.withOpacity(0.5),
-        //                                 fontWeight: FontWeight.bold),
-        //                           ),
-        //                         ],
-        //                       ),
-        //                       SizedBox(
-        //                         height: 8,
-        //                       ),
-        //                       Text(
-        //                         balanceLists[index]['description'],
-        //                         style: TextStyle(
-        //                           fontSize: 15,
-        //                           color: white.withOpacity(0.5),
-        //                         ),
-        //                       ),
-        //                     ],
-        //                   ),
-        //                 ),
-        //               );
-        //             }),
-        //           ),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.only(top: 15),
-            width: double.infinity,
-            child: SingleChildScrollView(
-                child: getAccountSection()),
           ),
         ),
       ],
@@ -373,6 +342,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
           ),
           child: Center(
             child: Image(
+              height: 28,
               image: AssetImage(image as String),
               fit: BoxFit.contain,
             ),
@@ -452,6 +422,31 @@ class _DashbaordPageState extends State<DashbaordPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class RoundedImages extends StatelessWidget {
+  const RoundedImages({
+    super.key,
+    required this.imageUrl,
+  });
+
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5,horizontal: 22),
+      height: 120,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12)
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: Image(image: AssetImage(imageUrl) as ImageProvider,fit: BoxFit.cover,)
       ),
     );
   }

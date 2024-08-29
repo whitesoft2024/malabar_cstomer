@@ -43,13 +43,13 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                 // ),
                 SafeArea(
                   child: Container(
-                    margin: EdgeInsets.fromLTRB(25, 10, 25, 10),
+                    margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Column(
                       children: [
                         Container(
                           alignment: Alignment.topLeft,
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          margin: EdgeInsets.fromLTRB(5, 0, 10, 0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,11 +87,11 @@ class _ForgotPasswordVerificationPageState extends State<ForgotPasswordVerificat
                                   ),
                                 ),
                                 child: OTPTextField(
-                                  length: 4,
+                                  length: 6,
                                   width: 300,
-                                  fieldWidth: 50,
+                                  fieldWidth: 35,
                                   style: GoogleFonts.roboto( // Change font to Roboto
-                                    fontSize: 30,color: Colors.black
+                                    fontSize: 19,color: Colors.black
                                   ),
                                   otpFieldStyle: OtpFieldStyle(
                                     focusBorderColor: Colors.black,
