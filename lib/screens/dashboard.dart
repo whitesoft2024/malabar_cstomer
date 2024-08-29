@@ -19,34 +19,6 @@ class DashbaordPage extends StatefulWidget {
 class _DashbaordPageState extends State<DashbaordPage> {
   int pageIndex = 0;
   bool _isBalanceVisible = false;
-  PageController _pageController = PageController();
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _startAutoScroll();
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _startAutoScroll() {
-    _timer = Timer.periodic(Duration(seconds: 3), (Timer timer) {
-      if (_pageController.hasClients) {
-        int nextPage = _pageController.page!.round() + 1;
-        if (nextPage == 4) {
-          nextPage = 0;
-        }
-        _pageController.animateToPage(nextPage,
-            duration: Duration(milliseconds: 300), curve: Curves.easeIn);
-      }
-    });
-  }
 
   final myitems = [
     'assets/images/AD1.jpg',
@@ -77,7 +49,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image(image: AssetImage("assets/images/user.png"),height: 30,width: 40,fit: BoxFit.contain,),
+              //Image(image: AssetImage("assets/images/user.png"),height: 35,width: 40,fit: BoxFit.contain,),
               // IconButton(
               //   onPressed: () {},
               //   icon: CircleAvatar(
@@ -86,6 +58,14 @@ class _DashbaordPageState extends State<DashbaordPage> {
               //         "assets/images/man.png"),
               //   ),
               // ),
+              IconButton(
+                onPressed: () {},
+                icon: CircleAvatar(
+                  backgroundColor: Colors.grey.shade300,
+                  radius: 16,
+                  child: Icon(Icons.person,size: 20,color: kPrimaryColor1,),
+                ),
+              ),
               SizedBox(width: 5,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
