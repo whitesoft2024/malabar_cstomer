@@ -24,7 +24,7 @@ const kButtonText = TextStyle(
 const kBodyText2 =
 TextStyle(fontSize: 28, fontWeight: FontWeight.w500, color: Colors.white);
 
-const kBackgroundColor = Color(0xFFFFD4D2);
+const kBackgroundColor = Color(0xFFE8ECE7);
 const kPrimaryColor = Color(0xFFF7F7FA);
 const kSecondaryColor = Color(0xFFFAB609);
 const Color primary = Color(0xB5FFFFFF);
@@ -42,7 +42,7 @@ const kGradient = LinearGradient(
   end: Alignment.bottomRight,
 );
 
-const kPrimaryColor1 = Color(0xBAF60403);
+const kPrimaryColor1 = Color(0xBADA0302);
 const kPrimaryLightColor = Color(0xFFFFE9EC);
 
 const double defaultPadding = 16.0;

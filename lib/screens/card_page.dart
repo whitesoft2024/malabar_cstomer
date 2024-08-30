@@ -1,3 +1,6 @@
+import 'package:bottom_picker/bottom_picker.dart';
+import 'package:bottom_picker/resources/arrays.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../constants.dart';
@@ -12,12 +15,38 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
-  bool _isBalanceVisible = false;
+
+  void  _openDatePicker(BuildContext context){
+    BottomPicker.date(
+      pickerTitle: Text("Select a Date",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+      dateOrder: DatePickerDateOrder.dmy,
+      maxDateTime: DateTime(2100),
+      minDateTime: DateTime(2000),
+      pickerTextStyle: GoogleFonts.rubik(
+        color: black,
+        fontWeight: FontWeight.w500,
+        fontSize: 15
+      ),
+      onChange: (index){
+        print(index);
+      },
+      buttonContent: Center(
+        child: Text("Select",style: GoogleFonts.montserrat(
+            color: white,fontWeight: FontWeight.w500),),
+      ),
+      buttonStyle: BoxDecoration(
+        color: black.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(5)
+      ) ,
+      initialDateTime: DateTime.now(),
+      bottomPickerTheme: BottomPickerTheme.blue,
+    ).show(context);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: kBackgroundColor,
       appBar:
       PreferredSize(child: getAppBar(), preferredSize: Size.fromHeight(60)),
       body: getBody(),
@@ -27,28 +56,34 @@ class _CardPageState extends State<CardPage> {
   Widget getAppBar() {
     return AppBar(
       elevation: 0,
-      backgroundColor: white,
+      scrolledUnderElevation: 0,
+      backgroundColor:kBackgroundColor,
       leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            color: black,
-            size: 18,
-          )),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back_ios_new,
+          color: Colors.black,
+          size: 18,
+        ),
+      ),
       title: Text(
         "RDS",
-        style: TextStyle(fontSize: 18, color: black,fontWeight: FontWeight.w700),
+        style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
       ),
       centerTitle: true,
-      // actions: [
-      //   IconButton(
-      //       onPressed: () {},
-      //       icon: Icon(Icons.more_vert, color: black, size: 25))
-      // ],
+      actions: [
+        IconButton(
+          onPressed:(){
+            _openDatePicker(context);
+          },
+          icon: Icon(Icons.today_rounded, color: Colors.black, size: 20),
+        ),
+      ],
     );
   }
+
 
   Widget getBody() {
     var size = MediaQuery.of(context).size;
@@ -79,8 +114,8 @@ class _CardPageState extends State<CardPage> {
         // ),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(bottom: 5,left: 22,right: 22,top: 8),
-          height: 170,
+          margin: EdgeInsets.only(bottom: 5,left: 33,right: 33,top: 8),
+          height: 160,
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [
@@ -169,39 +204,43 @@ class _CardPageState extends State<CardPage> {
             child: Column(
               children: [
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
                     title: Table(
-                      columnWidths: const {
-                        4: IntrinsicColumnWidth(), // Adjusts first column width based on its content
-                        0: FlexColumnWidth(),      // Second column takes up the remaining width
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
                       },
                       children: [
                         TableRow(
                           children: [
                             Text(
-                              'Amount',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 11),
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
                             ),
                             Text(
-                              ': 45678',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 11),
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
                             ),
                           ],
                         ),
                         TableRow(
                           children: [
                             Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 11),
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
                             ),
                             Text(
-                              ': 32 3232 3',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 11),
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
                             ),
                           ],
                         ),
@@ -209,11 +248,11 @@ class _CardPageState extends State<CardPage> {
                           children: [
                             Text(
                               'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 11),
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
                             ),
                             Text(
                               ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 11),
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
                             ),
                           ],
                         ),
@@ -230,11 +269,12 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 15.0,right: 15),
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
                         child: Table(
                           columnWidths: {
-                            2: IntrinsicColumnWidth(), // Adjusts the first column width based on its content
-                            3: FlexColumnWidth(),      // The second column takes up the remaining width
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
                           },
                           children: [
                             TableRow(
@@ -251,8 +291,105 @@ class _CardPageState extends State<CardPage> {
                             ),
                             TableRow(
                               children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
                                 Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 5, // Add elevation for shadow
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                  child: ExpansionTile(
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    backgroundColor: Colors.white70,
+                    collapsedBackgroundColor: Colors.white70,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    collapsedShape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    expandedAlignment: Alignment.centerLeft,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
+                          children: [
+                            TableRow(
+                              children: [
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
                             TableRow(
@@ -261,59 +398,12 @@ class _CardPageState extends State<CardPage> {
                                 Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
-                  elevation: 5, // Add elevation for shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-                  child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                      ],
-                    ),
-                    iconColor: Colors.red,
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
                           ],
                         ),
                       ),
@@ -321,22 +411,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -350,22 +475,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -373,22 +514,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -402,22 +578,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -425,22 +617,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -454,22 +681,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -477,22 +720,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -506,22 +784,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -529,22 +823,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -558,22 +887,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -581,22 +926,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -610,22 +990,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -633,22 +1029,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -662,22 +1093,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -685,22 +1132,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -714,22 +1196,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -737,22 +1235,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -766,22 +1299,38 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -789,22 +1338,57 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   child: ExpansionTile(
-                    leading: Image.asset("assets/images/mscs_1.png",height: 60,width: 40,),
-                    title: Text(
-                      'Amount : 4567',
-                      style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 12),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+                    title: Table(
+                      columnWidths:  {
+                         // Adjusts first column width based on its content
+                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
+                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
+                      },
                       children: [
-                        Text('Date : 32 3232 3',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
-                        Text('Type : Withdraw',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 10),),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Date',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 21 /11/2025',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Time',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': 12:00 ',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text(
+                              'Type',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                            Text(
+                              ': Withdraw',
+                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                     backgroundColor: Colors.white70,
@@ -818,28 +1402,45 @@ class _CardPageState extends State<CardPage> {
                     expandedAlignment: Alignment.centerLeft,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
+                        child: Table(
+                          columnWidths: {
+                             // Adjusts the first column width based on its content
+                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
+                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
+                          },
                           children: [
-                            Text('Balance : 87654',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Text('Employee : safu',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            TableRow(
                               children: [
-                                Text('Transaction ID: ', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),),
-                                Expanded(
-                                  child: Text('df45657887675465690845768', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 10),),
-                                ),
+                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
                               ],
                             ),
-                            Text('Bill No : rds567893728',style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,fontSize: 12),),
+                            TableRow(
+                              children: [
+                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
                 ),
+
               ],
             ),
           ),

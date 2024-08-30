@@ -1,8 +1,9 @@
+import 'dart:ui';
+
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-
 import '../constants.dart';
 import 'dashboard.dart';
 
@@ -50,7 +51,7 @@ class _homepageState extends State<homepage> {
         Center(
           child: Text(
             "Notification Page",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
       ],
@@ -59,21 +60,25 @@ class _homepageState extends State<homepage> {
 
   Widget getFooter() {
     List<IconData> iconItems = [
-      Icons.home_rounded,
-      Ionicons.person_circle,
+      Icons.home_filled,
+      Icons.person_rounded,
     ];
 
     return AnimatedBottomNavigationBar(
-      activeColor: Color(0xFF6F6AD7),
-      splashColor: secondary,
-      inactiveColor: Colors.black,
+      height: 53,
+      backgroundColor: Color(0xFF252424),
+      activeColor: kPrimaryColor1,
+      splashRadius: 0,
+      splashColor: kPrimaryLightColor,
+      inactiveColor: Colors.grey,
       icons: iconItems,
       activeIndex: pageIndex,
-      gapLocation: GapLocation.center,
-      notchSmoothness: NotchSmoothness.softEdge,
-      leftCornerRadius: 10,
+      gapLocation: GapLocation.none,
+      notchSmoothness: NotchSmoothness.smoothEdge,
+      //leftCornerRadius: 10,
       iconSize: 23,
-      rightCornerRadius: 10,
+      //rightCornerRadius: 10,
+      blurEffect: true,
       onTap: (index) {
         selectedTab(index);
       },
@@ -81,7 +86,7 @@ class _homepageState extends State<homepage> {
     );
   }
 
-  selectedTab(index) {
+  void selectedTab(int index) {
     setState(() {
       pageIndex = index;
     });
