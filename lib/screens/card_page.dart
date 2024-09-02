@@ -3,6 +3,7 @@ import 'package:bottom_picker/resources/arrays.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:malabar_cstomer/screens/rds_history.dart';
 import '../constants.dart';
 import '../data_json/card_json.dart';
 import '../data_json/card_operation.dart';
@@ -134,7 +135,6 @@ class _CardPageState extends State<CardPage> {
                 offset: Offset(0, 7), // changes position of shadow
               ),
             ],
-
           ),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
@@ -207,1239 +207,341 @@ class _CardPageState extends State<CardPage> {
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
                     trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
                         0xFF44CC6C))),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
                   elevation: 5, // Add elevation for shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 15),
-                    trailing: Text("₹1,212",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
-                    title: Table(
-                      columnWidths:  {
-                         // Adjusts first column width based on its content
-                        1: FlexColumnWidth(18),      // Second column takes up the remaining width
-                        0: FlexColumnWidth(14),      // Second column takes up the remaining width
-                      },
-                      children: [
-                        TableRow(
-                          children: [
-                            Text(
-                              'Date',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 21 /11/2025',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Time',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': 12:00 ',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        TableRow(
-                          children: [
-                            Text(
-                              'Type',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                            Text(
-                              ': Withdraw',
-                              style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    backgroundColor: Colors.white70,
-                    collapsedBackgroundColor: Colors.white70,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    collapsedShape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    expandedAlignment: Alignment.centerLeft,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15,0,15,10),
-                        child: Table(
-                          columnWidths: {
-                             // Adjusts the first column width based on its content
-                            1: FlexColumnWidth(14),      // The second column takes up the remaining width
-                            0: FlexColumnWidth(8),      // The second column takes up the remaining width
-                          },
-                          children: [
-                            TableRow(
-                              children: [
-                                Text('Balance', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': 87654', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Employee', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': safu', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Bill No', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': rds567893728', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Text('Transaction ID', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                                Text(': df4565788767546569', style: GoogleFonts.montserrat(fontWeight: FontWeight.w600, fontSize: 12)),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 5, // Add elevation for shadow
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 5, // Add elevation for shadow
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 5, // Add elevation for shadow
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 5, // Add elevation for shadow
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+
 
               ],
             ),

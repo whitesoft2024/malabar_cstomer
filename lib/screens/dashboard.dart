@@ -240,12 +240,12 @@ class _DashbaordPageState extends State<DashbaordPage> {
                   Accounts(() {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CardPage()));
-                  }, "assets/images/rd.png", "RD",Color(0xFFFFFFFF)),
+                  }, "assets/images/rd1.png", "RD",Color(0xFFFFFFFF)),
 
                   Accounts(() {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CardPage()));
-                  }, "assets/images/rate.png", "Fixed Deposite",Color(0xFFFFFFFF)),
+                  }, "assets/images/fd3.png", "Fixed Deposite",Color(0xFFFFFFFF)),
                 ],
               ),
 
@@ -255,17 +255,17 @@ class _DashbaordPageState extends State<DashbaordPage> {
                   Accounts(() {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CardPage()));
-                  }, "assets/images/saving.png", "Savings",Color(0xFFFFFFFF)),
+                  }, "assets/images/savings1.png", "Savings",Color(0xFFFFFFFF)),
 
                   Accounts(() {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CardPage()));
-                  }, "assets/images/groups.png", "GDCS",Color(0xFFFFFFFF)),
+                  }, "assets/images/gdcs.png", "GDCS",Color(0xFFFFFFFF)),
 
                   Accounts(() {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => CardPage()));
-                  }, "assets/images/groups.png", "GDCS",Color(0xFFFFFFFF)),
+                  }, "assets/images/groups.png", "Sorna Nidi",Color(0xFFFFFFFF)),
                 ],
               )
             ],
@@ -351,7 +351,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
               child: Image(
                 image: AssetImage(image),
                 fit: BoxFit.contain,
-                height: 30,
+                height: 35,
               ),
             ),
             SizedBox(height: 8),
