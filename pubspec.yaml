@@ -43,6 +43,8 @@ dependencies:
   bottom_picker: ^2.8.0
   marquee: ^2.2.3
   text_marquee: ^0.0.2
+  url_launcher: ^6.3.0
+  confetti: ^0.7.0
 
 
   # The following adds the Cupertino Icons font to your application.

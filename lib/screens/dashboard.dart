@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:malabar_cstomer/screens/rd_page.dart';
+import 'package:malabar_cstomer/screens/sorna_nidi_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:text_marquee/text_marquee.dart';
 
@@ -267,7 +268,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
 
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => RdsPage()));
+                        MaterialPageRoute(builder: (context) => SornaNidi()));
                   }, "assets/images/groups.png", "Sorna Nidi",Color(0xFFFFFFFF)),
                 ],
               )
