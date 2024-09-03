@@ -8,14 +8,14 @@ import '../constants.dart';
 import '../data_json/card_json.dart';
 import '../data_json/card_operation.dart';
 
-class CardPage extends StatefulWidget {
-  const CardPage({Key? key}) : super(key: key);
+class RdsPage extends StatefulWidget {
+  const RdsPage({Key? key}) : super(key: key);
 
   @override
-  State<CardPage> createState() => _CardPageState();
+  State<RdsPage> createState() => _RdsPageState();
 }
 
-class _CardPageState extends State<CardPage> {
+class _RdsPageState extends State<RdsPage> {
 
   void  _openDatePicker(BuildContext context){
     BottomPicker.date(
@@ -205,7 +205,8 @@ class _CardPageState extends State<CardPage> {
               children: [
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -228,7 +229,8 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -249,7 +251,32 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -270,7 +297,32 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -291,7 +343,32 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -312,7 +389,32 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -333,7 +435,32 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -354,7 +481,32 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
+                    onTap: (){
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RdsHistory()));
+                    },
+                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
+                        0xFF44CC6C))),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -375,7 +527,8 @@ class _CardPageState extends State<CardPage> {
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
@@ -387,142 +540,19 @@ class _CardPageState extends State<CardPage> {
                     },
                     trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
                         0xFF44CC6C))),
-                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
+                    title: Text("Haneefa N",style: GoogleFonts.montserrat(
+                        fontSize:14,color: Colors.black,fontWeight: FontWeight.w700),),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
+                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(
+                        color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
                   ),
                 ),
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RdsHistory()));
-                    },
-                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
-                        0xFF44CC6C))),
-                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RdsHistory()));
-                    },
-                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
-                        0xFF44CC6C))),
-                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RdsHistory()));
-                    },
-                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
-                        0xFF44CC6C))),
-                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RdsHistory()));
-                    },
-                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
-                        0xFF44CC6C))),
-                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RdsHistory()));
-                    },
-                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
-                        0xFF44CC6C))),
-                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 15),
-                    onTap: (){
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RdsHistory()));
-                    },
-                    trailing: Text("₹1,212",style: GoogleFonts.roboto(fontWeight: FontWeight.bold,color: Color(
-                        0xFF44CC6C))),
-                    title: Text("Haneefa N",style: GoogleFonts.montserrat(fontSize:15,color: Colors.black,fontWeight: FontWeight.w700),),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    subtitle: Text("31 August 2024  at 12:36 pm",style: GoogleFonts.roboto(color: Colors.black,fontSize:11,fontWeight: FontWeight.w700)),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(horizontal: 22.0, vertical: 05),
-                  elevation: 5, // Add elevation for shadow
+                  elevation: 2, // Add elevation for shadow
+                  color: white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),

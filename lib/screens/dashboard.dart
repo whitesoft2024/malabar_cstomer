@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:malabar_cstomer/screens/rd_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:text_marquee/text_marquee.dart';
 
 import '../constants.dart';
 import '../data_json/blance_json.dart';
-import 'card_page.dart';
+import 'rds_page.dart';
 
 class DashbaordPage extends StatefulWidget {
   const DashbaordPage({Key? key}) : super(key: key);
@@ -48,6 +50,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
       child: AppBar(
         backgroundColor: Color(0xFF252424),
         elevation: 0,
+        scrolledUnderElevation: 0,
         titleSpacing: 0,
         leading: IconButton(
           onPressed: () {},
@@ -234,18 +237,18 @@ class _DashbaordPageState extends State<DashbaordPage> {
                 children: [
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CardPage()));
+                        MaterialPageRoute(builder: (context) => RdsPage()));
                   }, "assets/images/deposit 1.png", "RDS",Color(0xFFFFFFFF)),
 
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CardPage()));
+                        MaterialPageRoute(builder: (context) => RdPage()));
                   }, "assets/images/rd1.png", "RD",Color(0xFFFFFFFF)),
 
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CardPage()));
-                  }, "assets/images/fd3.png", "Fixed Deposite",Color(0xFFFFFFFF)),
+                        MaterialPageRoute(builder: (context) => RdsPage()));
+                  }, "assets/images/fd4.png", "Fixed Deposite",Color(0xFFFFFFFF)),
                 ],
               ),
 
@@ -254,17 +257,17 @@ class _DashbaordPageState extends State<DashbaordPage> {
                 children: [
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CardPage()));
+                        MaterialPageRoute(builder: (context) => RdsPage()));
                   }, "assets/images/savings1.png", "Savings",Color(0xFFFFFFFF)),
 
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CardPage()));
+                        MaterialPageRoute(builder: (context) => RdsPage()));
                   }, "assets/images/gdcs.png", "GDCS",Color(0xFFFFFFFF)),
 
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CardPage()));
+                        MaterialPageRoute(builder: (context) => RdsPage()));
                   }, "assets/images/groups.png", "Sorna Nidi",Color(0xFFFFFFFF)),
                 ],
               )
@@ -316,7 +319,6 @@ class _DashbaordPageState extends State<DashbaordPage> {
         title: Text(
           title,
           style: GoogleFonts.jost(
-
               fontSize: 13,
               fontWeight: FontWeight.w500,
               color: Colors.black),
@@ -330,11 +332,13 @@ class _DashbaordPageState extends State<DashbaordPage> {
     return GestureDetector(
       onTap: onTap,
       child:Container(
-        margin: EdgeInsets.symmetric(vertical: 8),
+        margin: EdgeInsets.symmetric(vertical: 10),
         width: size.width /3 -15,
         child: Column(
           children: [
             Container(
+              height:60,
+              width: 60,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(23),
@@ -350,18 +354,19 @@ class _DashbaordPageState extends State<DashbaordPage> {
               padding: EdgeInsets.all(15),
               child: Image(
                 image: AssetImage(image),
-                fit: BoxFit.contain,
-                height: 35,
+                fit: BoxFit.fill,
+                height: 40,
               ),
             ),
             SizedBox(height: 8),
-            Text(
+            TextMarquee(
               title,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.fade,
+              curve: Curves.linear,
+              delay:  Duration(seconds:3 ),
+              duration: Duration(seconds: 5),
               style: GoogleFonts.montserrat(
                 fontSize: 12,
-                color: Colors.grey.shade800,
+                color: Colors.grey.shade700,
                 fontWeight: FontWeight.w700
               ),
             ),
