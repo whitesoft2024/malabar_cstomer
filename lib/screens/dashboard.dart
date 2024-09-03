@@ -404,7 +404,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
           ),
         ),
         Positioned(
-          bottom: 10,  // Adjust the position of the indicator
+          bottom: 10,
           child: AnimatedSmoothIndicator(
             activeIndex: myCurrentIndex,
             count: myitems.length,
@@ -412,7 +412,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
               dotHeight: 3,
               dotWidth: 12,
               spacing: 7,
-              dotColor: kPrimaryLightColor,
+              dotColor: Color(0xFF252424),
               activeDotColor: kPrimaryColor1,
               paintStyle: PaintingStyle.fill,
             ),
