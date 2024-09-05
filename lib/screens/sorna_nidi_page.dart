@@ -117,7 +117,7 @@ class _SornaNidiState extends State<SornaNidi> {
                           margin: EdgeInsets.symmetric(horizontal: 10),
                           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           decoration: BoxDecoration(
-                              color: Colors.grey.shade400,
+                              color: Colors.black12,
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
