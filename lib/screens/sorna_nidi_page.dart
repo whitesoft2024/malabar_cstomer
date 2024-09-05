@@ -164,8 +164,8 @@ class _SornaNidiState extends State<SornaNidi> {
                           ),
                         ),
                         _buildPrizeContainer(context, '1st prize winners!', Icons.star, isConfettiContainer: true),
-                        _buildTileContainer(context, 'Family Dinner Set', Icons.dinner_dining),
-                        _buildTileContainer(context, '3rd prize winners!', Icons.star_half),
+                        _buildTileContainer(context, 'Family Dinner Set', Icons.dinner_dining,isConfetti: true),
+                        _buildTileContainer(context, '3rd prize winners!', Icons.star_half,isConfetti: true),
                       ],
                     ),
                   ),
@@ -229,13 +229,15 @@ class _SornaNidiState extends State<SornaNidi> {
     );
   }
 
-  Widget _buildTileContainer(BuildContext context, String text, IconData icon) {
+  Widget _buildTileContainer(BuildContext context, String text, IconData icon,{bool isConfetti = false}) {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: InkWell(
         onTap: (){
-          _launchURL();
+          if(isConfetti){
+            _showConfettiAndLaunchURL();
+          }
         },
         child: ExpansionTile(
           minTileHeight: 70,
