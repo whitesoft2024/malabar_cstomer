@@ -15,36 +15,36 @@ class SornaNidi extends StatefulWidget {
 }
 
 class _SornaNidiState extends State<SornaNidi> {
-  Future<Map<String, dynamic>>? _auctionDetailsFuture;
+  Future<List<dynamic>>? _auctionDetailsFuture;
 
 
-  Future<Map<String, dynamic>> fetchAuctionDetails() async {
+  Future<List<dynamic>> fetchAuctionDetails() async {
     final response = await http.get(Uri.parse('https://api.malabarbank.in/api/getswarna'));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      // Extract auction details
       final schemes = data['schemes'] as List;
-      if (schemes.isNotEmpty) {
-        final auctionDetails = schemes[0]['auctionDetails'] as List;
-        if (auctionDetails.isNotEmpty) {
-          final details = auctionDetails[0];
-          return {
-            'firstPrice': details['firstPrice'] as List,
-            'secondPrice': details['secondPrice'] as List,
-            'thirdPrice': details['thirdPrice'] as List,
-          };
+      List<dynamic> auctionDetails = [];
+
+      for (var scheme in schemes) {
+        if (scheme['auctionDetails'].isNotEmpty) {
+          auctionDetails.add(scheme['auctionDetails']);
         }
       }
+      return auctionDetails;
+
+    } else {
+      throw Exception('Failed to load auction details');
     }
-    throw Exception('Failed to load auction details');
   }
+
 
   @override
   void initState() {
     super.initState();
     _auctionDetailsFuture = fetchAuctionDetails();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _SornaNidiState extends State<SornaNidi> {
           ),
         ),
       ),
-      body: FutureBuilder<Map<String, dynamic>>(
+      body: FutureBuilder<List<dynamic>>(
         future: _auctionDetailsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -72,10 +72,17 @@ class _SornaNidiState extends State<SornaNidi> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            final data = snapshot.data!;
-            final firstPrice = data['firstPrice'] as List;
-            final secondPrice = data['secondPrice'] as List;
-            final thirdPrice = data['thirdPrice'] as List;
+            List<dynamic> auctionDetails = snapshot.data!;
+            dynamic winnerName = '';
+
+            if (auctionDetails.isNotEmpty) {
+              dynamic firstPrice = auctionDetails[0];
+              if (firstPrice is List<dynamic>) {
+                if (firstPrice.isNotEmpty) {
+                  winnerName = firstPrice[0]['customerName'];
+                }
+              }
+            }
 
             return Stack(
               children: [
@@ -150,7 +157,7 @@ class _SornaNidiState extends State<SornaNidi> {
                         ),
                         SizedBox(height: 10),
                         Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
+                          padding: EdgeInsets.only(left: 12.0),
                           child: Text(
                             "Winners :",
                             style: GoogleFonts.montserrat(fontWeight: FontWeight.w900),
@@ -223,97 +230,60 @@ class _SornaNidiState extends State<SornaNidi> {
   }
 
   Widget _buildTileContainer(BuildContext context, String text, IconData icon) {
-    // Get data for each tile
-    // ...
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: ExpansionTile(
-        minTileHeight: 70,
-        leading: Icon(
-          icon,
-          color: Colors.white,
-          size: 30,
-        ),
-        title: Text(
-          text,
-          style: GoogleFonts.montserrat(
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
+      child: InkWell(
+        onTap: (){
+          _launchURL();
+        },
+        child: ExpansionTile(
+          minTileHeight: 70,
+          leading: Icon(
+            icon,
             color: Colors.white,
-            shadows: [
-              Shadow(
-                blurRadius: 4.0,
-                color: Colors.black.withOpacity(0.6),
-                offset: Offset(0, 2),
-              ),
-            ],
+            size: 25,
           ),
-        ),
-        backgroundColor: Colors.grey.shade500,
-        collapsedBackgroundColor: Colors.grey.shade500,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        collapsedShape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        expandedAlignment: Alignment.centerLeft,
-        children: [
-          Container(
-            height: 45,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+          title: Text(
+            text,
+            style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
               color: Colors.white,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Name', style: GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: 15)),
+              shadows: [
+                Shadow(
+                  blurRadius: 4.0,
+                  color: Colors.black.withOpacity(0.6),
+                  offset: Offset(0, 2),
+                ),
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPrizeContainer(BuildContext context, String text, IconData icon, {bool isConfettiContainer = false}) {
-    // Get data for each prize
-    // ...
-
-    return InkWell(
-      onTap: () {
-        if (isConfettiContainer) {
-          _showConfettiAndName(context, text); // Show confetti and winner name
-        }
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          backgroundColor: Colors.grey.shade500,
+          collapsedBackgroundColor: Colors.grey.shade500,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          collapsedShape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          expandedAlignment: Alignment.centerLeft,
           children: [
-            Icon(
-              icon,
-              color: Colors.yellow,
-              size: 30,
-            ),
-            SizedBox(width: 10),
-            Text(
-              text,
-              style: GoogleFonts.montserrat(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
+            Container(
+              height: 45,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('View Winners in Youtube', style: GoogleFonts.montserrat(fontWeight: FontWeight.w700, fontSize: 11)),
+                ],
               ),
             ),
           ],
@@ -322,24 +292,81 @@ class _SornaNidiState extends State<SornaNidi> {
     );
   }
 
+  Widget _buildPrizeContainer(BuildContext context, String text, IconData icon, {bool isConfettiContainer = false}) {
+    // Check if auctionDetails has the necessary data
+    // For example, if `isConfettiContainer` should show actual prize data
+
+    return InkWell(
+      // onTap: () {
+      //   if (isConfettiContainer) {
+      //     _showConfettiAndName(context, '$_winnerName'); // Show confetti and winner name
+      //   }
+      // },
+      onTap: (){
+        _launchURL();
+      },
+      child: Container(
+        height: 70,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: EdgeInsets.symmetric(horizontal: 15.0),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade500,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              icon,
+              color: Colors.white,
+              size: 25,
+            ),
+            SizedBox(width: 20),
+            Text(
+              text,
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    blurRadius: 4.0,
+                    color: Colors.black.withOpacity(0.6),
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+
   void _showConfettiAndName(BuildContext context, String name) {
     _winnerName.value = name;
     _showBlur.value = true;
     _confettiController.play();
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 3), () {
       _showBlur.value = false;
       _winnerName.value = '';
     });
   }
 
   void _launchURL() async {
-    const url = 'https://www.youtube.com/channel/UC1F09lKSBftjJ07szqzDFyQ';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    const url = 'https://www.youtube.com/@swarnanidhitoday';
+    try {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      print('Error launching URL: $e');
     }
   }
+
 
   Path drawStar(Size size) {
     final Path path = Path();
@@ -360,6 +387,7 @@ class _SornaNidiState extends State<SornaNidi> {
     path.close();
     return path;
   }
+
 
   final ValueNotifier<String> _winnerName = ValueNotifier<String>('');
   final ValueNotifier<bool> _showBlur = ValueNotifier<bool>(false);

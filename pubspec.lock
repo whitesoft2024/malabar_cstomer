@@ -478,7 +478,7 @@ packages:
     source: hosted
     version: "2.3.3"
   url_launcher_windows:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: url_launcher_windows
       sha256: "49c10f879746271804767cb45551ec5592cdab00ee105c06dddde1a98f73b185"
