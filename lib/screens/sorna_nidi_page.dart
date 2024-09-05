@@ -303,7 +303,9 @@ class _SornaNidiState extends State<SornaNidi> {
       //   }
       // },
       onTap: (){
-        _launchURL();
+        if (isConfettiContainer) {
+          _showConfettiAndLaunchURL();
+        }
       },
       child: Container(
         height: 70,
@@ -344,6 +346,7 @@ class _SornaNidiState extends State<SornaNidi> {
   }
 
 
+
   void _showConfettiAndName(BuildContext context, String name) {
     _winnerName.value = name;
     _showBlur.value = true;
@@ -351,6 +354,13 @@ class _SornaNidiState extends State<SornaNidi> {
     Future.delayed(Duration(seconds: 3), () {
       _showBlur.value = false;
       _winnerName.value = '';
+    });
+  }
+
+  void _showConfettiAndLaunchURL() {
+    _confettiController.play();
+    Future.delayed(Duration(seconds: 1), () {
+      _launchURL();
     });
   }
 
