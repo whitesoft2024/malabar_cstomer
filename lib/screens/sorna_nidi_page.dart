@@ -261,6 +261,8 @@ class _SornaNidiScreenState extends State<SornaNidi> {
                             colors: const [
                               Colors.red,
                               Colors.blue,
+                              Colors.black,
+                              Colors.white,
                               Colors.green,
                               Colors.yellow,
                               Colors.purple
@@ -466,7 +468,7 @@ class _SornaNidiScreenState extends State<SornaNidi> {
 
   final ValueNotifier<String> _winnerName = ValueNotifier<String>('');
   final ValueNotifier<bool> _showBlur = ValueNotifier<bool>(false);
-  final ConfettiController _confettiController = ConfettiController(duration: const Duration(seconds: 4));
+  final ConfettiController _confettiController = ConfettiController(duration: const Duration(seconds: 3));
 }
 
 void main() {

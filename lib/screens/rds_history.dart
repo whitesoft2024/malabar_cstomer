@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../constants.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
+class EmiDetailPage extends StatelessWidget {
+  final Map<String, dynamic> emiItem;
+  final String customerName;
+
+  EmiDetailPage({required this.emiItem, required this.customerName});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: RdsHistory(),
-    );
-  }
-}
+    bool isWithdrawal = emiItem.containsKey('withdrawalAmount') && emiItem['withdrawalAmount'] != null;
 
-class RdsHistory extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor:kBackgroundColor,
+        backgroundColor: kBackgroundColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -48,15 +41,15 @@ class RdsHistory extends StatelessWidget {
                   CircleAvatar(
                     radius: 30,
                     backgroundColor: Color(0xFFDEC0C0),
-                    child: Text('H', style: GoogleFonts.montserrat(color: Colors.black,fontSize: 24,fontWeight: FontWeight.w600)),
+                    child: Text('${emiItem['User']}'[0].toUpperCase(), style: GoogleFonts.montserrat(color: Colors.black,fontSize: 24,fontWeight: FontWeight.w600)),
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'To HANEEFA N',
+                    '${emiItem['User'] ?? 'No user information'}',
                     style: GoogleFonts.montserrat(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '₹5',
+                    '${isWithdrawal ? emiItem['withdrawalAmount']?.toString() : emiItem['newAmount']?.toString() ?? 'No amount information'}',
                     style: GoogleFonts.roboto(fontSize: 36, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 10),
@@ -73,7 +66,7 @@ class RdsHistory extends StatelessWidget {
                     ],
                   ),
                   Divider(indent: 40,endIndent: 40,),
-                  Text('31 Aug 2024, 12:36 pm',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
+                  Text('${emiItem['Date']} at ${emiItem['time']}',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
                 ],
               ),
             ),
@@ -81,16 +74,15 @@ class RdsHistory extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(width: 1,color: grey)
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(width: 1,color: grey)
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading: Image(image: AssetImage("assets/images/mscs_1.png",),height: 20,),
+                    leading: Image(image: AssetImage("assets/images/mscs1.png",),height: 20,),
                     title: Text('Malabar Bank',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
-                    //trailing: Icon(Icons.keyboard_arrow_down),
                   ),
                   Divider(),
                   Padding(
@@ -99,15 +91,16 @@ class RdsHistory extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('RDS transaction ID ',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w600),),
-                        Text('424462637200',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
+                        Text('${isWithdrawal ? emiItem['withdrawTransactionId'] ?? 'No transaction ID' : emiItem['depositTransactionId'] ?? 'No transaction ID'}',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
                         SizedBox(height: 10),
-                        Text('To: HANEEFA N ',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w600),),
+                        Text('To: ${emiItem['User']}',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w600),),
                         Text('(Malabar Bank)',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
                         SizedBox(height: 10),
-                        Text('From: MURSHID KATTUKULATH',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
+                        // Show the dynamic customer name here:
+                        Text('From: $customerName',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
                         SizedBox(height: 10),
                         Text('RDS Bill ID',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w600),),
-                        Text('CICAgPCLO92gMA',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
+                        Text('${isWithdrawal ? emiItem['withdrawRdsBill'] ?? 'No bill information' : emiItem['depositRdsBill'] ?? 'No bill information'}',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
                       ],
                     ),
                   ),
@@ -127,3 +120,4 @@ class RdsHistory extends StatelessWidget {
     );
   }
 }
+

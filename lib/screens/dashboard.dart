@@ -4,13 +4,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:malabar_cstomer/screens/rd_page.dart';
+import 'package:malabar_cstomer/screens/rds_page.dart';
 import 'package:malabar_cstomer/screens/sorna_nidi_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:text_marquee/text_marquee.dart';
 
 import '../constants.dart';
-import '../data_json/blance_json.dart';
-import 'rds_page.dart';
 
 class DashbaordPage extends StatefulWidget {
   const DashbaordPage({Key? key}) : super(key: key);
@@ -238,7 +237,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
                 children: [
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => RdsPage()));
+                        MaterialPageRoute(builder: (context) => RdsPage(branch: 'MLP', membershipId: 'MSCIMLP00604',)));
                   }, "assets/images/deposit 1.png", "RDS",Color(0xFFFFFFFF)),
 
                   Accounts(() {
@@ -247,8 +246,8 @@ class _DashbaordPageState extends State<DashbaordPage> {
                   }, "assets/images/rd1.png", "RD",Color(0xFFFFFFFF)),
 
                   Accounts(() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => RdsPage()));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => RdsPage()));
                   }, "assets/images/fd4.png", "Fixed Deposite",Color(0xFFFFFFFF)),
                 ],
               ),
@@ -257,13 +256,13 @@ class _DashbaordPageState extends State<DashbaordPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Accounts(() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => RdsPage()));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => RdsPage()));
                   }, "assets/images/savings1.png", "Savings",Color(0xFFFFFFFF)),
 
                   Accounts(() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => RdsPage()));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => RdsPage()));
                   }, "assets/images/gdcs.png", "GDCS",Color(0xFFFFFFFF)),
 
                   Accounts(() {
