@@ -3,11 +3,13 @@ import 'dart:math';
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:bottom_picker/resources/arrays.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:malabar_cstomer/screens/rds_history.dart';
-import '../constants.dart';
+import 'package:malabar_cstomer/screens/RDS/rds_history.dart';
+import '../../constants.dart';
+import 'Qr_Page.dart';
 
 class Customer {
   final String id;
@@ -87,6 +89,7 @@ Future<Customer?> fetchCustomerByMembershipId(String branch, String membershipId
   }
 }
 
+
 class RdsPage extends StatefulWidget {
   final String branch;
   final String membershipId;
@@ -99,6 +102,26 @@ class RdsPage extends StatefulWidget {
 
 class _RdsPageState extends State<RdsPage> {
   late Future<Customer?> customer;
+
+  @override
+  void initState() {
+    super.initState();
+    customer = fetchCustomerByMembershipId(widget.branch, widget.membershipId);
+  }
+
+  void _navigateToQRDetails(BuildContext context, String customerName, String rdsNumber) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => QRDetailsPage(
+          customerName: customerName,
+          Data: rdsNumber,
+          appBarTitle: 'My RDS QR Code',
+          DataText: 'RDS NO : $rdsNumber',
+        ),
+      ),
+    );
+  }
 
   final List<Color> avatarColors = [
     Colors.green.shade700,
@@ -139,20 +162,16 @@ class _RdsPageState extends State<RdsPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    customer = fetchCustomerByMembershipId(widget.branch, widget.membershipId);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar:AppBar(
+      appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor:kBackgroundColor,
+        backgroundColor: kBackgroundColor,
         leading: IconButton(
+          hoverColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -167,14 +186,19 @@ class _RdsPageState extends State<RdsPage> {
           style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
         ),
         centerTitle: true,
-        // actions: [
-        //   IconButton(
-        //     onPressed:(){
-        //       _openDatePicker(context);
-        //     },
-        //     icon: Icon(Icons.today_rounded, color: Colors.black, size: 20),
-        //   ),
-        // ],
+        actions: [
+          IconButton(
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onPressed: () async {
+              final currentCustomer = await customer; // Fetch the customer data
+              if (currentCustomer != null) {
+                _navigateToQRDetails(context, currentCustomer.customerName, currentCustomer.RDSNumber); // Navigate to QRDetailsPage
+              }
+            },
+            icon: Icon(Icons.qr_code_2_sharp),
+          ),
+        ],
       ),
       body: Center(
         child: FutureBuilder<Customer?>(
@@ -186,26 +210,30 @@ class _RdsPageState extends State<RdsPage> {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData && snapshot.data != null) {
               final customer = snapshot.data!;
+              String latestBalance = customer.emiData.isNotEmpty
+                  ? customer.emiData.last['balanceAmount'].toString() // Get the last EMI balance
+                  : customer.balanceAmount;
+
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: double.infinity,
-                    margin: EdgeInsets.only(bottom: 5,left: 33,right: 33,top: 8),
+                    margin: EdgeInsets.only(bottom: 5, left: 33, right: 33, top: 8),
                     height: 160,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: [
                             Color(0xBA04F691).withOpacity(0.6),
-                            Color(0xF2070707),],
+                            Color(0xF2070707),
+                          ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          tileMode: TileMode.clamp
-                      ),
+                          tileMode: TileMode.clamp),
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color:black.withOpacity(0.4),
+                          color: black.withOpacity(0.4),
                           spreadRadius: 3,
                           blurRadius: 10,
                           offset: Offset(0, 7), // changes position of shadow
@@ -213,7 +241,7 @@ class _RdsPageState extends State<RdsPage> {
                       ],
                     ),
                     child: Padding(
-                      padding:  EdgeInsets.all(15.0),
+                      padding: EdgeInsets.all(15.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -222,17 +250,24 @@ class _RdsPageState extends State<RdsPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('${customer.customerName}'.toUpperCase(),style: GoogleFonts.varela(color: white.withOpacity(0.8),fontSize: 15,fontWeight: FontWeight.w600),),
+                              Text(
+                                '${customer.customerName}'.toUpperCase(),
+                                style: GoogleFonts.varela(
+                                  color: white.withOpacity(0.8),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                               SizedBox(
                                 height: 10,
                               ),
                               Text(
                                 '${customer.RDSNumber}'.toUpperCase(),
                                 style: GoogleFonts.varela(
-                                    color: white.withOpacity(0.9),
-                                    fontSize: 16,
-                                    wordSpacing: 15,
-                                    fontWeight: FontWeight.w600
+                                  color: white.withOpacity(0.9),
+                                  fontSize: 16,
+                                  wordSpacing: 15,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],
@@ -244,26 +279,36 @@ class _RdsPageState extends State<RdsPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '₹${customer.balanceAmount}' ,
+                                    '₹ $latestBalance.00',
                                     style: GoogleFonts.varela(
                                       color: white.withOpacity(0.8),
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                  SizedBox(height: 4,),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
                                     child: Text(
                                       "RDS balance",
-                                      style: GoogleFonts.varela(fontSize: 10,color: white.withOpacity(0.8),fontWeight: FontWeight.w600),
+                                      style: GoogleFonts.varela(
+                                        fontSize: 10,
+                                        color: white.withOpacity(0.8),
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text('${customer.membershipType}',style: GoogleFonts.montserrat(color: white.withOpacity(0.7),fontSize: 11),),
+                                child: Text(
+                                  '${customer.membershipType}',
+                                  style: GoogleFonts.montserrat(
+                                      color: white.withOpacity(0.7), fontSize: 11),
+                                ),
                               ),
                             ],
                           )
@@ -272,8 +317,12 @@ class _RdsPageState extends State<RdsPage> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 22,vertical: 10),
-                    child: Text("History",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 18),),
+                    padding: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+                    child: Text(
+                      "History",
+                      style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
                   ),
                   customer.emiData.isEmpty
                       ? Text('No Emi data Available.')
@@ -281,7 +330,7 @@ class _RdsPageState extends State<RdsPage> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: customer.emiData.length,
-                      itemBuilder: ( context,  index) {
+                      itemBuilder: (context, index) {
                         var emiItem = customer.emiData[index];
 
                         // Ensure that all relevant fields are converted to strings if needed
@@ -292,23 +341,33 @@ class _RdsPageState extends State<RdsPage> {
                         TextStyle amountStyle;
 
                         // Determine if the EMI item is a withdrawal or deposit and set the style accordingly
-                        if (emiItem.containsKey('withdrawalAmount') && emiItem['withdrawalAmount'] != null) {
-                          emiAmount = emiItem['withdrawalAmount']?.toString() ?? 'No amount';
-                          amountStyle = GoogleFonts.montserrat(color: Colors.red,fontWeight: FontWeight.bold); // Set text color to green for withdrawal
+                        if (emiItem.containsKey('withdrawalAmount') &&
+                            emiItem['withdrawalAmount'] != null) {
+                          emiAmount =
+                          '- ₹${emiItem['withdrawalAmount']?.toString() ?? 'No amount'}';
+                          amountStyle = GoogleFonts.exo2(
+                              color: Colors.red, fontWeight: FontWeight.bold); // Set text color to red for withdrawal
                         } else {
-                          emiAmount = emiItem['newAmount']?.toString() ?? 'No amount';
-                          amountStyle = GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.bold); // Set default text color for deposits
+                          emiAmount =
+                              '+ ₹${emiItem['newAmount']?.toString() ?? 'No amount'}';
+                          amountStyle = GoogleFonts.exo2(
+                              color: Colors.black, fontWeight: FontWeight.w800); // Set default text color for deposits
                         }
 
                         return ListTile(
                           contentPadding: EdgeInsets.symmetric(horizontal: 25),
                           onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => EmiDetailPage(emiItem: emiItem, customerName: '${customer.customerName}',)));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EmiDetailPage(
+                                      emiItem: emiItem,
+                                      customerName: '${customer.customerName}',
+                                    )));
                           },
                           leading: CircleAvatar(
-                            backgroundColor:
-                            avatarColors[_random.nextInt(avatarColors.length)],
+                            backgroundColor: avatarColors[
+                            _random.nextInt(avatarColors.length)],
                             child: Text(
                               '$emiUser'[0].toUpperCase(), // Display the first letter of the name
                               style: TextStyle(color: Colors.white),
@@ -338,11 +397,11 @@ class _RdsPageState extends State<RdsPage> {
                         );
                       },
                     ),
-                  )
+                  ),
                 ],
               );
             } else {
-              return Text('Customer not found');
+              return Text('No data available');
             }
           },
         ),
@@ -351,70 +410,9 @@ class _RdsPageState extends State<RdsPage> {
   }
 }
 
+
 void main() {
   runApp(MaterialApp(
     home: RdsPage(branch: 'MLP', membershipId: 'MSCIMLP00604'),
   ));
 }
-// Padding(
-//   padding: const EdgeInsets.all(16.0),
-//   child: Column(
-//     crossAxisAlignment: CrossAxisAlignment.start,
-//     children: [
-//       Text('Customer Name: ${customer.customerName}', style: TextStyle(fontSize: 18)),
-//       SizedBox(height: 8),
-//       Text('Membership ID: ${customer.membershipId}', style: TextStyle(fontSize: 18)),
-//       SizedBox(height: 8),
-//       Text('Address: ${customer.address}', style: TextStyle(fontSize: 18)),
-//       SizedBox(height: 8),
-//       Text('Mobile: ${customer.customerMobile}', style: TextStyle(fontSize: 18)),
-//       SizedBox(height: 8),
-//       Text('Membership Type: ${customer.membershipType}', style: TextStyle(fontSize: 18)),
-//       SizedBox(height: 16),
-//       Text('EMI Data:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-//       SizedBox(height: 8),
-//       customer.emiData.isEmpty
-//           ? Text('No EMI data available.')
-//           : Expanded(
-//         child:ListView.builder(
-//           shrinkWrap: true,
-//           itemCount: customer.emiData.length,
-//           itemBuilder: (context, index) {
-//             var emiItem = customer.emiData[index];
-//
-//             // Ensure that all relevant fields are converted to strings if needed
-//             String emiUser = emiItem['User']?.toString() ?? 'No user';
-//             String emiDate = emiItem['Date']?.toString() ?? 'No date';
-//             String emiTime = emiItem['time']?.toString() ?? 'No date';
-//             String emiAmount;
-//             TextStyle amountStyle;
-//
-//             // Determine if the EMI item is a withdrawal or deposit and set the style accordingly
-//             if (emiItem.containsKey('withdrawalAmount') && emiItem['withdrawalAmount'] != null) {
-//               emiAmount = emiItem['withdrawalAmount']?.toString() ?? 'No amount';
-//               amountStyle = TextStyle(color: Colors.red); // Set text color to green for withdrawal
-//             } else {
-//               emiAmount = emiItem['newAmount']?.toString() ?? 'No amount';
-//               amountStyle = TextStyle(color: Colors.black); // Set default text color for deposits
-//             }
-//
-//             return ListTile(
-//               title: Text('$emiUser'),
-//               subtitle: Text('$emiDate at $emiTime' ),
-//               trailing: Text('$emiAmount', style: amountStyle),
-//               onTap: () {
-//                 Navigator.push(
-//                   context,
-//                   MaterialPageRoute(
-//                     builder: (context) => EmiDetailPage(emiItem: emiItem),
-//                   ),
-//                 );
-//               },
-//             );
-//           },
-//         )
-//         ,
-//       ),
-//     ],
-//   ),
-// );

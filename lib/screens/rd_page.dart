@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:malabar_cstomer/screens/rd_history.dart';
-import 'package:malabar_cstomer/screens/rds_history.dart';
+import 'package:malabar_cstomer/screens/RDS/rds_history.dart';
 import 'dart:math'; // Import the dart:math library for randomization
 import '../constants.dart';
 import '../data_json/card_json.dart';

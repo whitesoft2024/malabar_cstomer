@@ -91,6 +91,7 @@ class _SornaNidiScreenState extends State<SornaNidi> {
     }
   }
 
+
   @override
   void initState() {
     super.initState();
@@ -372,7 +373,7 @@ class _SornaNidiScreenState extends State<SornaNidi> {
                   fontSize: 14,
                   color: Colors.black,
                 ),),
-            )
+            ),
           ],
         ),
       ),
@@ -477,23 +478,3 @@ void main() {
     home: SornaNidi(),
   ));
 }
-
-// return Card(
-//   margin: EdgeInsets.all(8.0),
-//   child: Padding(
-//     padding: EdgeInsets.all(16.0),
-//     child: Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Text('First Price:', style: TextStyle(fontWeight: FontWeight.bold)),
-//         ...auctionDetail.firstPrice.map((detail) => Text(detail.customerNumber)).toList(),
-//         SizedBox(height: 8),
-//         Text('Second Price:', style: TextStyle(fontWeight: FontWeight.bold)),
-//         ...auctionDetail.secondPrice.map((detail) => Text(detail.customerName)).toList(),
-//         SizedBox(height: 8),
-//         Text('Third Price:', style: TextStyle(fontWeight: FontWeight.bold)),
-//         ...auctionDetail.thirdPrice.map((detail) => Text(detail.customerName)).toList(),
-//       ],
-//     ),
-//   ),
-// );

@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:malabar_cstomer/screens/rd_page.dart';
-import 'package:malabar_cstomer/screens/rds_page.dart';
+import 'package:malabar_cstomer/screens/RDS/rds_page.dart';
 import 'package:malabar_cstomer/screens/sorna_nidi_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:text_marquee/text_marquee.dart';
@@ -237,7 +237,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
                 children: [
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => RdsPage(branch: 'MLP', membershipId: 'MSCIMLP00604',)));
+                        MaterialPageRoute(builder: (context) => RdsPage(branch: 'MLP', membershipId: 'MSCIMLP00555',)));
                   }, "assets/images/deposit 1.png", "RDS",Color(0xFFFFFFFF)),
 
                   Accounts(() {

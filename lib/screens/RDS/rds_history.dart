@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../constants.dart';
+import '../../constants.dart';
 
 
 class EmiDetailPage extends StatelessWidget {
@@ -14,10 +14,11 @@ class EmiDetailPage extends StatelessWidget {
     bool isWithdrawal = emiItem.containsKey('withdrawalAmount') && emiItem['withdrawalAmount'] != null;
 
     return Scaffold(
+      //backgroundColor: kBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor: kBackgroundColor,
+        backgroundColor: white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -40,7 +41,7 @@ class EmiDetailPage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundColor: Color(0xFFDEC0C0),
+                    backgroundColor: Color(0xFFC0DEC2),
                     child: Text('${emiItem['User']}'[0].toUpperCase(), style: GoogleFonts.montserrat(color: Colors.black,fontSize: 24,fontWeight: FontWeight.w600)),
                   ),
                   SizedBox(height: 10),
@@ -81,7 +82,7 @@ class EmiDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading: Image(image: AssetImage("assets/images/mscs1.png",),height: 20,),
+                    leading: Image(image: AssetImage("assets/images/mscs_1.png",),height: 20,),
                     title: Text('Malabar Bank',style: GoogleFonts.montserrat(color: Colors.black,fontWeight: FontWeight.w700),),
                   ),
                   Divider(),
