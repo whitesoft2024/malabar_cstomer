@@ -267,7 +267,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
 
                   Accounts(() {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SornaNidi()));
+                        MaterialPageRoute(builder: (context) => SornaNidi(branch: 'MRC', membershipId: 'MSCSIKLD00508',)));
                   }, "assets/images/groups.png", "Sorna Nidi",Color(0xFFFFFFFF)),
                 ],
               )
